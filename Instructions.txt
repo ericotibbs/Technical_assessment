@@ -1,0 +1,35 @@
+***********************************************************
+                Phase 1 – Basic Setup
+Step 1:  MongoDB
+    Provision EC2 Ubuntu 18 on AWS
+    Use these steps to install and start mongodb
+    https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-ubuntu/
+    Update /etc/mongod.conf to allow connection to mongodb from app container
+        # network interfaces
+        net:
+        port: 27017
+        bindIp: 0.0.0.0
+
+Step 2: MongoDB Backup
+    Created S3 buckets and then 
+    Use bash script to do mongodb backups using scriptmongodb/mongodbtos3_backup.sh
+
+Step 3: EKS Cluster
+    Multiple ways to Provision EKS Cluster we Use
+    https://eksctl.io/ command to provision eks cluster in us-west-2
+
+Step 4: Container Web Application:
+    All these kubenetes manifest and dockerfile for flask app is in app directory
+**************************************************************
+
+                Phase 2 – Identity & Secrets Setup
+Step 1: Configure the container as admin
+    Used clusterrole and assign it to service account and attached it to pod app
+
+Step 2 Configure the MongoDB VM as highly privileged
+    Used IAM Role with EC2 full access policy as mentioned and attach it to EC2 instance
+
+Step 3 MongoDB connection string
+    mongodb://54.244.175.26:27017
+
+***************************************************************
